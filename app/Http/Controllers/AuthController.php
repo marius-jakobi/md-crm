@@ -66,6 +66,7 @@ class AuthController extends Controller
         $newUser->password = Hash::make($request->input('password'));
         $newUser->save();
 
-        return redirect()->route('welcome')->with('success', 'Ihre Registrierung wurde erfolgreich abgeschlossen.');
+        return redirect()->route('welcome')
+            ->with('success', 'Ihre Registrierung wurde erfolgreich abgeschlossen.');
     }
 }
