@@ -9,6 +9,7 @@
     @stack('styles')
 </head>
 <body>
+    @include('components.navbar')
     <div class="container-fluid">
         {{-- Session flash messages --}}
         @foreach(['error', 'warning', 'info', 'success'] as $type)
