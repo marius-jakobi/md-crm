@@ -6,7 +6,12 @@
     <div class="collapse navbar-collapse">
         {{--Left side links--}}
         <ul class="navbar-nav mr-auto">
+            @guest
             <x-navbar.navlink route="welcome">Startseite</x-navbar.navlink>
+            @endguest
+            @auth
+            <x-navbar.navlink route="dashboard">Dashboard</x-navbar.navlink>
+            @endauth
         </ul>
         {{--Right side links--}}
         <ul class="navbar-nav ml-auto">
