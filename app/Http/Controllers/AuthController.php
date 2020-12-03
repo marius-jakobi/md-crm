@@ -29,8 +29,7 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended(route('welcome'))
-                ->with('success', 'Login OK');
+            return redirect()->intended(route('dashboard'));
         } else {
             return redirect()->route('auth.login')
                 ->with('error', 'Die Zugangsdaten sind nicht gültig.')

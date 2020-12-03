@@ -3,7 +3,9 @@
 namespace Tests\Unit\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
@@ -54,8 +56,7 @@ class AuthControllerTest extends TestCase
 
         // Attempt with test user data
         $this->post(route('auth.authenticate'), ['email' => $user->email, 'password' => 'password'])
-            ->assertRedirect(route('welcome'))
-            ->assertSessionHas('success');
+            ->assertRedirect(route('dashboard'));
 
         // Delete user afterwards
         $user->delete();
@@ -97,19 +98,27 @@ class AuthControllerTest extends TestCase
     }
 
     public function testValidRegistration() {
+        $faker = \Faker\Factory::create();
+
         $validData = [
             [
-                'email' => 'valid@email.com',
-                'firstname' => 'abc',
-                'lastname' => 'def',
-                'password' => '123456789'
+                'email' => $faker->email,
+                'firstname' => $faker->firstName,
+                'lastname' => $faker->lastName,
+                'password' => 'password'
             ],
         ];
+
+        var_dump($validData);
 
         foreach($validData as $data) {
             $this->post(route('auth.register'), $data)
                 ->assertRedirect(route('welcome'))
-                ->assertSessionHas(['success']);
+                ->assertSessionHas('success');
+        }
+
+        foreach($validData as $user) {
+            DB::table('users')->where('email', $user['email'])->delete();
         }
     }
 

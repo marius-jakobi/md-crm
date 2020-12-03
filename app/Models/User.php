@@ -42,7 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Returns the full name concatenated from firstname and lastname
+     *
+     * @return string
+     */
     public function fullname() {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    /**
+     * User belongs to roles
+     */
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 }
