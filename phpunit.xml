@@ -14,9 +14,20 @@
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./app/Http/Controllers</directory>
         </include>
+        <exclude>
+            <file>./app/Http/Controllers/Controller.php</file>
+        </exclude>
+        <report>
+            <html outputDirectory=".coverage/html"/>
+        </report>
     </coverage>
+    <logging>
+        <junit outputFile=".phpunit/junit.xml"/>
+        <testdoxHtml outputFile=".phpunit/testdox.html"/>
+        <teamcity outputFile=".phpunit/teamcity.txt"/>
+    </logging>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
