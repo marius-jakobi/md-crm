@@ -11,6 +11,7 @@
             @endguest
             @auth
             <x-navbar.navlink route="dashboard">Dashboard</x-navbar.navlink>
+            <x-navbar.navlink route="customers.list">Kunden</x-navbar.navlink>
             @endauth
         </ul>
         {{--Right side links--}}
