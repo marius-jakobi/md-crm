@@ -7,5 +7,5 @@ composer install
 npm install
 ```
 
-#Run tests
+# Run tests
     php artisan test
