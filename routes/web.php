@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,9 @@ Route::post('/auth/logout', [AuthController::class, 'logout'])->name('auth.logou
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
+    Route::prefix('customers')->group(function() {
+        Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+        Route::get('/{id}', [CustomerController::class, 'show'])->name('customer.show');
+    });
 });

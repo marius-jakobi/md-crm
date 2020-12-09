@@ -11,6 +11,9 @@
             @endguest
             @auth
             <x-navbar.navlink route="dashboard">Dashboard</x-navbar.navlink>
+            @can('viewAny', App\Models\Customer::class)
+                <x-navbar.navlink route="customer.index">Kunden</x-navbar.navlink>
+            @endcan
             @endauth
         </ul>
         {{--Right side links--}}

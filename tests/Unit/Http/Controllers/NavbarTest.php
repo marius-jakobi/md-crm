@@ -9,6 +9,7 @@ class NavbarTest extends TestCase
 {
     private const DASHBOARD = 'Dashboard';
     private const HOMEPAGE = 'Startseite';
+    private const CUSTOMERS = 'Kunden';
 
     public function testNavbar()
     {
@@ -20,7 +21,7 @@ class NavbarTest extends TestCase
 
         $this->actingAs($user)
             ->get('/')
-            ->assertSeeText(self::DASHBOARD)
+            ->assertSeeText([self::DASHBOARD, self::CUSTOMERS])
             ->assertDontSeeText(self::HOMEPAGE);
     }
 }
