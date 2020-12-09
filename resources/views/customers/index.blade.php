@@ -14,7 +14,14 @@
         <tbody>
         @foreach($customers as $customer)
             <tr>
-                <td><a href="{{ route('customer.details', ['id' => $customer->id]) }}">{{ $customer->name }}</a></td>
+                <td>
+                    @can('view', $customer)
+                    <a href="{{ route('customer.show', ['id' => $customer->id]) }}">{{ $customer->name }}</a>
+                    @endcan
+                    @cannot('view', $customer)
+                    {{ $customer->name }}
+                    @endcannot
+                </td>
                 <td>{{ $customer->created_at }}</td>
             </tr>
         @endforeach

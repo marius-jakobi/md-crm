@@ -14,14 +14,26 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $permissions = [
-            ['identifier' => 'show Customer list', 'description' => 'Kundenliste anzeigen'],
-            ['identifier' => 'show Customer details', 'description' => 'Kundendetails anzeigen'],
+        $methods = [
+            ['identifier' => 'index', 'description' => 'auflisten'],
+            ['identifier' => 'view', 'description' => 'anzeigen'],
+            ['identifier' => 'create', 'description' => 'erstellen'],
+            ['identifier' => 'update', 'description' => 'ändern'],
+            ['identifier' => 'delete', 'description' => 'löschen'],
+        ];
+        $entities = [
+            ['identifier' => 'customer', 'description' => 'Kunde']
         ];
 
-        foreach ($permissions as $permission) {
-            $newPermission = new Permission($permission);
-            $newPermission->save();
+        foreach($methods as $method) {
+            foreach($entities as $entity) {
+                $permission = new Permission([
+                    'identifier' => $method['identifier'] . '-' . $entity['identifier'],
+                    'description' => $entity['description'] . ($method['identifier'] == 'index' ? 'n' : '') . ' ' . $method['description']
+                ]);
+
+                $permission->save();
+            }
         }
     }
 }

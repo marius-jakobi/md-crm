@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -58,10 +59,27 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
-    public function hasRole(string $roleName) {
+    public function isSuperAdmin()
+    {
+        return $this->email === 'bob@test.com';
+    }
+
+    public function hasRole(string $identifier) {
+        $roles = DB::table('role_user')
+            ->where('roles.identifier', '=', $identifier)
+            ->join('roles', 'roles.id', '=', 'role_user.role_id')
+            ->select('roles.id')
+            ->get();
+
+        return count($roles) > 0;
+    }
+
+    public function hasPermission(string $identifier) {
         foreach($this->roles as $role) {
-            if ($role->name == $roleName) {
-                return true;
+            foreach($role->permissions as $permission) {
+                if ($permission->identifier === $identifier) {
+                    return true;
+                }
             }
         }
 

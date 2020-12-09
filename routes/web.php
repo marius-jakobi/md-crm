@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
     Route::prefix('customers')->group(function() {
-        Route::get('/', [CustomerController::class, 'list'])->name('customers.list');
-        Route::get('/{id}', [CustomerController::class, 'details'])->name('customer.details');
+        Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+        Route::get('/{id}', [CustomerController::class, 'show'])->name('customer.show');
     });
 });

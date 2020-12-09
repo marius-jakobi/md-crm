@@ -7,15 +7,19 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function list() {
+    public function index() {
+        $this->authorize('viewAny', Customer::class);
+
         $customers = Customer::paginate(10);
 
-        return view('customers.list', ['customers' => $customers]);
+        return view('customers.index', ['customers' => $customers]);
     }
 
-    public function details(string $id) {
+    public function show(string $id) {
         $customer = Customer::findOrFail($id);
 
-        return view('customers.details', ['customer' => $customer]);
+        $this->authorize('view', $customer);
+
+        return view('customers.show', ['customer' => $customer]);
     }
 }
