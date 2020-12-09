@@ -22,9 +22,9 @@ class RoleSeeder extends Seeder
             ['name' => 'Service-Techniker', 'identifier' => 'technicians'],
         ];
 
-        foreach($roles as $roleName) {
-            $role = new Role(['name' => $roleName]);
-            $role->save();
+        foreach($roles as $role) {
+            $newRole = new Role(['identifier' => $role['identifier'], 'name' => $role['name']]);
+            $newRole->save();
         }
     }
 }

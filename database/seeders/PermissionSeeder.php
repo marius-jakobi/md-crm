@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -25,15 +27,20 @@ class PermissionSeeder extends Seeder
             ['identifier' => 'customer', 'description' => 'Kunde']
         ];
 
+        $adminRole = Role::where('identifier', '=', 'administrators')->first();
+
         foreach($methods as $method) {
             foreach($entities as $entity) {
                 $permission = new Permission([
                     'identifier' => $method['identifier'] . '-' . $entity['identifier'],
                     'description' => $entity['description'] . ($method['identifier'] == 'index' ? 'n' : '') . ' ' . $method['description']
                 ]);
-
-                $permission->save();
+                $adminRole->permissions()->save($permission);
             }
         }
+
+        $user = User::where('email', '=', User::adminEmail())->first();
+        $user->roles()->attach($adminRole->id);
+
     }
 }

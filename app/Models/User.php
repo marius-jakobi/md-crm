@@ -59,9 +59,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
-    public function isSuperAdmin()
+    public static function adminEmail()
     {
-        return $this->email === 'bob@test.com';
+        return 'bob@test.com';
     }
 
     public function hasRole(string $identifier) {
