@@ -19,9 +19,7 @@ class CustomerControllerTest extends TestCase
             ->get(route('customer.index'))
             ->assertStatus(403);
 
-        $role = Role::whereHas('permissions', function(Builder $query) {
-            $query->where('identifier', '=', 'index-customer');
-        })->first();
+        $role = $this->getRoleWithPermission('index-customer');
 
         $user->roles()->save($role);
         $user->refresh();
@@ -43,9 +41,7 @@ class CustomerControllerTest extends TestCase
             ->get($route)
             ->assertStatus(403);
 
-        $role = Role::whereHas('permissions', function(Builder $query) {
-            $query->where('identifier', '=', 'view-customer');
-        })->first();
+        $role = $this->getRoleWithPermission('view-customer');
 
         $user->roles()->save($role);
         $user->refresh();
@@ -56,5 +52,11 @@ class CustomerControllerTest extends TestCase
 
         $user->delete();
         $customer->delete();
+    }
+
+    private function getRoleWithPermission(string $permission) {
+        return Role::whereHas('permissions', function(Builder $query) use($permission) {
+            $query->where('identifier', '=', $permission);
+        })->first();
     }
 }
