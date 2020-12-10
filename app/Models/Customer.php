@@ -15,6 +15,6 @@ class Customer extends Model
     }
 
     public function shippingAddresses() {
-        return $this->hasMany(BillingAddress::class, 'customer_id', 'id');
+        return $this->hasMany(ShippingAddress::class, 'customer_id', 'id');
     }
 }
