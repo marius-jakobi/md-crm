@@ -59,11 +59,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
-    public static function adminEmail()
-    {
-        return 'bob@test.com';
-    }
-
     public function hasRole(string $identifier) {
         $roles = DB::table('role_user')
             ->where('roles.identifier', '=', $identifier)
