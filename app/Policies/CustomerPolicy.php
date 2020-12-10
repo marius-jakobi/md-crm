@@ -18,7 +18,7 @@ class CustomerPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('index-customer');
+        return $user->hasPermission(CustomerPermission::INDEX);
     }
 
     /**
@@ -30,7 +30,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer)
     {
-        return $user->hasPermission('view-customer');
+        return $user->hasPermission(CustomerPermission::VIEW);
     }
 
     /**
@@ -41,7 +41,7 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission('create-customer');
+        return $user->hasPermission(CustomerPermission::CREATE);
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer)
     {
-        return $user->hasPermission('update-customer');
+        return $user->hasPermission(CustomerPermission::UPDATE);
     }
 
     /**
@@ -65,6 +65,14 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer)
     {
-        return $user->hasPermission('delete-customer');
+        return $user->hasPermission(CustomerPermission::DELETE);
     }
+}
+
+abstract class CustomerPermission {
+    public const INDEX = 'index-customer';
+    public const VIEW = 'view-customer';
+    public const CREATE = 'create-customer';
+    public const UPDATE = 'update-customer';
+    public const DELETE = 'delete-customer';
 }
