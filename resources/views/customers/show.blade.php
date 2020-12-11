@@ -7,23 +7,47 @@
     <p>erstellt: {{ $customer->created_at }}</p>
     <p>zuletzt geändert: {{ $customer->updated_at }}</p>
     <h2>Rechnungsadressen</h2>
-    <ul>
-    @foreach($customer->billingAddresses as $address)
-        <li>
-            {{ $address->name }},
-            {{ $address->po_box ? 'Postfach ' . $address->po_box : $address->street }},
-            {{ $address->zip . ' ' . $address->city }}
-        </li>
-    @endforeach
-    </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Postfach</td>
+            <td>Straße</td>
+            <td>PLZ</td>
+            <td>Ort</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($customer->billingAddresses as $address)
+        <tr>
+            <td>{{ $address->name }}</td>
+            <td>Postfach {{ $address->po_box }}</td>
+            <td>{{ $address->street }}</td>
+            <td>{{ $address->zip }}</td>
+            <td>{{ $address->city }}</td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
     <h2>Lieferadressen</h2>
-    <ul>
-    @foreach($customer->shippingAddresses as $address)
-        <li>
-            {{ $address->name }},
-            {{ $address->po_box ? 'Postfach ' . $address->po_box : $address->street }},
-            {{ $address->zip . ' ' . $address->city }}
-        </li>
-    @endforeach
-    </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Straße</td>
+            <td>PLZ</td>
+            <td>Ort</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($customer->shippingAddresses as $address)
+            <tr>
+                <td>{{ $address->name }}</td>
+                <td>{{ $address->street }}</td>
+                <td>{{ $address->zip }}</td>
+                <td>{{ $address->city }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection
