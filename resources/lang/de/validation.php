@@ -179,6 +179,9 @@ return [
         'time'                  => 'Uhrzeit',
         'available'             => 'verfügbar',
         'size'                  => 'Größe',
+        'street'                 => 'Straße',
+        'po_box'                => 'Postfach',
+        'zip'                   => 'Postleitzahl',
     ],
 
 ];

@@ -14,13 +14,7 @@ class CustomerControllerTest extends TestCase
     public function testIndex()
     {
         $user = User::factory()->create();
-
-        $this->actingAs($user)
-            ->get(route('customer.index'))
-            ->assertStatus(403);
-
         $role = $this->getRoleWithPermission('index-customer');
-
         $user->roles()->save($role);
         $user->refresh();
 
@@ -36,19 +30,13 @@ class CustomerControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $customer = Customer::factory()->create();
-        $route = route('customer.show', ['id' => $customer->id]);
-
-        $this->actingAs($user)
-            ->get($route)
-            ->assertStatus(403);
-
         $role = $this->getRoleWithPermission('view-customer');
 
         $user->roles()->save($role);
         $user->refresh();
 
         $this->actingAs($user)
-            ->get($route)
+            ->get(route('customer.show', ['id' => $customer->id]))
             ->assertOk()
             ->assertViewIs('customers.show');
 

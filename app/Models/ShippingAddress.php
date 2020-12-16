@@ -10,4 +10,6 @@ class ShippingAddress extends CustomerAddress
     use HasFactory;
 
     protected $table = 'shipping_addresses';
+
+    protected $fillable = ['name', 'street', 'zip', 'city'];
 }

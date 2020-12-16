@@ -109,8 +109,6 @@ class AuthControllerTest extends TestCase
             ],
         ];
 
-        var_dump($validData);
-
         foreach($validData as $data) {
             $this->post(route('auth.register'), $data)
                 ->assertRedirect(route('welcome'))

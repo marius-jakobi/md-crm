@@ -10,4 +10,6 @@ class BillingAddress extends CustomerAddress
     use HasFactory;
 
     protected $table = 'billing_addresses';
+
+    protected $fillable = ['name', 'street', 'po_box', 'zip', 'city'];
 }

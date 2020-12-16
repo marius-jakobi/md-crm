@@ -29,6 +29,9 @@
         @endforeach
         </tbody>
     </table>
+    @can('create', \App\Models\BillingAddress::class)
+    <a href="{{ route('customers.addresses.billing.create', ['id' => $customer->id]) }}" class="btn btn-primary">Hinzufügen</a>
+    @endcan
     <h2>Lieferadressen</h2>
     <table class="table">
         <thead>
@@ -50,6 +53,9 @@
         @endforeach
         </tbody>
     </table>
+    @can('create', \App\Models\ShippingAddress::class)
+        <a href="{{ route('customers.addresses.shipping.create', ['id' => $customer->id]) }}" class="btn btn-primary">Hinzufügen</a>
+    @endcan
     <h3>Kontakte</h3>
     <table class="table">
         <thead>

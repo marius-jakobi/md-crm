@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Customer;
+use App\Models\ShippingAddress;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CustomerPolicy
+class ShippingAddressPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class CustomerPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission(CustomerPermission::INDEX);
+        return $user->hasPermission(ShippingAddressPermission::INDEX);
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\ShippingAddress  $shippingAddress
      * @return mixed
      */
-    public function view(User $user, Customer $customer)
+    public function view(User $user, ShippingAddress $shippingAddress)
     {
-        return $user->hasPermission(CustomerPermission::VIEW);
+        return $user->hasPermission(ShippingAddressPermission::VIEW);
     }
 
     /**
@@ -41,30 +41,30 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission(CustomerPermission::CREATE);
+        return $user->hasPermission(ShippingAddressPermission::CREATE);
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\ShippingAddress  $shippingAddress
      * @return mixed
      */
-    public function update(User $user, Customer $customer)
+    public function update(User $user, ShippingAddress $shippingAddress)
     {
-        return $user->hasPermission(CustomerPermission::UPDATE);
+        return $user->hasPermission(ShippingAddressPermission::UPDATE);
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
+     * @param  \App\Models\ShippingAddress  $shippingAddress
      * @return mixed
      */
-    public function delete(User $user, Customer $customer)
+    public function delete(User $user, ShippingAddress $shippingAddress)
     {
-        return $user->hasPermission(CustomerPermission::DELETE);
+        return $user->hasPermission(ShippingAddressPermission::DELETE);
     }
 }

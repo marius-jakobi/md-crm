@@ -24,7 +24,9 @@ class PermissionSeeder extends Seeder
             ['identifier' => 'delete', 'description' => 'löschen'],
         ];
         $entities = [
-            ['identifier' => 'customer', 'description' => 'Kunde']
+            ['identifier' => 'customer', 'description' => 'Kunde'],
+            ['identifier' => 'billing-address', 'description' => 'Rechnungsadresse'],
+            ['identifier' => 'shipping-address', 'description' => 'Lieferadresse'],
         ];
 
         $adminRole = Role::where('identifier', '=', 'administrators')->first();
