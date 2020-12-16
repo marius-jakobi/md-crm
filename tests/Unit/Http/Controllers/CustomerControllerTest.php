@@ -26,6 +26,7 @@ class CustomerControllerTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('customer.index'))
+            ->assertViewIs('customers.index')
             ->assertOk();
 
         $user->delete();
@@ -48,7 +49,8 @@ class CustomerControllerTest extends TestCase
 
         $this->actingAs($user)
             ->get($route)
-            ->assertOk();
+            ->assertOk()
+            ->assertViewIs('customers.show');
 
         $user->delete();
         $customer->delete();

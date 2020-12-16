@@ -50,4 +50,37 @@
         @endforeach
         </tbody>
     </table>
+    <h3>Kontakte</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Betriebsstelle</th>
+            <th>Name</th>
+            <th>Telefon</th>
+            <th>E-Mail</th>
+            <th>Mobil</th>
+            <th>Position</th>
+            <th>Abteilung</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($customer->contacts as $contact)
+        <tr>
+            <td>
+                @if($contact->shippingAddress)
+                    {{ $contact->shippingAddress->name }}<br>
+                    {{ $contact->shippingAddress->street }}<br>
+                    {{ $contact->shippingAddress->zip }} {{ $contact->shippingAddress->city }}
+                @endif
+            </td>
+            <td>{{ $contact->name }}</td>
+            <td>{{ $contact->phone }}</td>
+            <td>{{ $contact->email }}</td>
+            <td>{{ $contact->mobile }}</td>
+            <td>{{ $contact->position }}</td>
+            <td>{{ $contact->division }}</td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection

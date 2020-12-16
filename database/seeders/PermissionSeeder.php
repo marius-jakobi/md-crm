@@ -39,8 +39,5 @@ class PermissionSeeder extends Seeder
             }
         }
 
-        $user = User::where('email', '=', User::adminEmail())->first();
-        $user->roles()->attach($adminRole->id);
-
     }
 }

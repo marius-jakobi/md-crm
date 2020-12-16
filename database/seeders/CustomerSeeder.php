@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\BillingAddress;
 use App\Models\Customer;
+use App\Models\CustomerContact;
 use App\Models\ShippingAddress;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class CustomerSeeder extends Seeder
             ->times(20)
             ->has(BillingAddress::factory()->count(1))
             ->has(ShippingAddress::factory()->count(3))
+            ->has(CustomerContact::factory()->count(2))
             ->create();
     }
 }

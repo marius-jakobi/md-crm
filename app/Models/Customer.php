@@ -17,4 +17,15 @@ class Customer extends Model
     public function shippingAddresses() {
         return $this->hasMany(ShippingAddress::class, 'customer_id', 'id');
     }
+
+    public function customerContacts() {
+        return $this->hasMany(CustomerContact::class, 'customer_id', 'id');
+    }
+
+    /**
+     * Alias for customer contacts
+     */
+    public function contacts() {
+        return $this->customerContacts();
+    }
 }
