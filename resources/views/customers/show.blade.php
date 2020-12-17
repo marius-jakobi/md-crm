@@ -15,6 +15,7 @@
             <td>Straße</td>
             <td>PLZ</td>
             <td>Ort</td>
+            <td>Aktionen</td>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +26,11 @@
             <td>{{ $address->street }}</td>
             <td>{{ $address->zip }}</td>
             <td>{{ $address->city }}</td>
+            <td>
+                @can('update', $address)
+                <a href="{{ route('customers.addresses.billing.edit', ['id' => $customer->id, 'address_id' => $address->id]) }}">Ändern</a>
+                @endcan
+            </td>
         </tr>
         @endforeach
         </tbody>
@@ -40,6 +46,7 @@
             <td>Straße</td>
             <td>PLZ</td>
             <td>Ort</td>
+            <td>Aktionen</td>
         </tr>
         </thead>
         <tbody>
@@ -49,6 +56,11 @@
                 <td>{{ $address->street }}</td>
                 <td>{{ $address->zip }}</td>
                 <td>{{ $address->city }}</td>
+                <td>
+                    @can('update', $address)
+                        <a href="{{ route('customers.addresses.shipping.edit', ['id' => $customer->id, 'address_id' => $address->id]) }}">Ändern</a>
+                    @endcan
+                </td>
             </tr>
         @endforeach
         </tbody>

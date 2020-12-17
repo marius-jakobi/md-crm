@@ -6,7 +6,7 @@ class Text extends FormInput
 {
     public string $name;
 
-    public function __construct(string $name, string $caption, int $maxLength)
+    public function __construct(string $name, string $caption, int $maxLength = 128)
     {
         parent::__construct($caption, $maxLength);
         $this->name = $name;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BillingAddress;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,22 +18,16 @@ class BillingAddressController extends Controller
     public function store(Request $request, string $id) {
         $this->authorize('create', BillingAddress::class);
 
-        $rules = [
-            'name' => 'required|string|between:3,128',
-            'street' => 'required_without:po_box',
-            'po_box' => 'required_without:street',
-            'zip' => 'required|regex:/[0-9]{5}/',
-            'city' => 'required|string|between:3,128',
-        ];
+        $customer = Customer::findOrFail($id);
 
-        $validator = Validator::make($request->input(), $rules);
+        $validator = Validator::make($request->input(), BillingAddress::validationRules());
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $billingAddress = new BillingAddress($request->only(['name', 'street', 'po_box', 'zip', 'city']));
-        $billingAddress->customer_id = $id;
+        $billingAddress->customer_id = $customer->id;
         $billingAddress->save();
 
         return redirect(route('customer.show', ['id' => $id]))
@@ -43,5 +38,25 @@ class BillingAddressController extends Controller
         $address = BillingAddress::findOrFail($address_id);
 
         return view('customers.addresses.billing.edit', ['address' => $address]);
+    }
+
+    public function update(Request $request, string $id, int $address_id) {
+        $address = BillingAddress::findOrFail($address_id);
+        $this->authorize('update', $address);
+
+        $input = $request->only(['name', 'street', 'po_box', 'zip', 'city']);
+
+        $validator = Validator::make($input, BillingAddress::validationRules());
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+
+        $address->update($input);
+        $address->save();
+
+        return redirect()->route('customer.show', ['id' => $id])
+            ->with('success', 'Die Rechnungsadresse wurde geändert.');
     }
 }
