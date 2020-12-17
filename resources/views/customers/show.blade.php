@@ -7,15 +7,18 @@
     <p>erstellt: {{ $customer->created_at }}</p>
     <p>zuletzt geändert: {{ $customer->updated_at }}</p>
     <h2>Rechnungsadressen</h2>
+    @can('create', \App\Models\BillingAddress::class)
+        <a href="{{ route('customers.addresses.billing.create', ['id' => $customer->id]) }}" class="btn btn-primary mb-3">Hinzufügen</a>
+    @endcan
     <table class="table">
         <thead>
         <tr>
-            <td>Name</td>
-            <td>Postfach</td>
-            <td>Straße</td>
-            <td>PLZ</td>
-            <td>Ort</td>
-            <td>Aktionen</td>
+            <th>Name</th>
+            <th>Postfach</th>
+            <th>Straße</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+            <th>Aktionen</th>
         </tr>
         </thead>
         <tbody>
@@ -35,18 +38,18 @@
         @endforeach
         </tbody>
     </table>
-    @can('create', \App\Models\BillingAddress::class)
-    <a href="{{ route('customers.addresses.billing.create', ['id' => $customer->id]) }}" class="btn btn-primary">Hinzufügen</a>
-    @endcan
     <h2>Lieferadressen</h2>
+    @can('create', \App\Models\ShippingAddress::class)
+        <a href="{{ route('customers.addresses.shipping.create', ['id' => $customer->id]) }}" class="btn btn-primary mb-3">Hinzufügen</a>
+    @endcan
     <table class="table">
         <thead>
         <tr>
-            <td>Name</td>
-            <td>Straße</td>
-            <td>PLZ</td>
-            <td>Ort</td>
-            <td>Aktionen</td>
+            <th>Name</th>
+            <th>Straße</th>
+            <th>PLZ</th>
+            <th>Ort</th>
+            <th>Aktionen</th>
         </tr>
         </thead>
         <tbody>
@@ -65,9 +68,6 @@
         @endforeach
         </tbody>
     </table>
-    @can('create', \App\Models\ShippingAddress::class)
-        <a href="{{ route('customers.addresses.shipping.create', ['id' => $customer->id]) }}" class="btn btn-primary">Hinzufügen</a>
-    @endcan
     <h3>Kontakte</h3>
     <table class="table">
         <thead>

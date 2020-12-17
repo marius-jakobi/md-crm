@@ -13,20 +13,14 @@ abstract class FormInput extends Component
     public string $caption;
 
     /**
-     * @var int max length of the input
-     */
-    public int $maxLength;
-
-    /**
      * Create a new component instance.
      *
      * @param string $caption
      * @param int $maxLength
      */
-    public function __construct(string $caption, int $maxLength)
+    public function __construct(string $caption)
     {
 
         $this->caption = $caption;
-        $this->maxLength = $maxLength;
     }
 }

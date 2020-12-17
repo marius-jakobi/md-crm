@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Rechnungsadresse anlegen</h1>
-    <form action="{{ route('customers.addresses.billing.store', ['id' => $id]) }}" method="post">
+    <x-forms.form action="{{ route('customers.addresses.billing.store', ['id' => $id]) }}" method="post">
         @csrf
         <x-forms.text name="name" caption="Name"></x-forms.text>
         <x-forms.text name="street" caption="Straße"></x-forms.text>
@@ -18,5 +18,5 @@
             </div>
         </div>
         <x-forms.submit-button caption="Anlegen"></x-forms.submit-button>
-    </form>
+    </x-forms.form>
 @endsection
