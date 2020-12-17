@@ -38,4 +38,10 @@ class BillingAddressController extends Controller
         return redirect(route('customer.show', ['id' => $id]))
             ->with('success', 'Die Rechnungsadresse wurde angelegt.');
     }
+
+    public function edit(string $id, int $address_id) {
+        $address = BillingAddress::findOrFail($address_id);
+
+        return view('customers.addresses.billing.edit', ['address' => $address]);
+    }
 }

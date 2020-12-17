@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
     Route::prefix('customers')->group(function() {
+        Route::get('/{id}/billing-address/{address_id}/edit', [BillingAddressController::class, 'edit'])->name('customers.addresses.billing.edit');
         Route::get('/{id}/billing-address/create', [BillingAddressController::class, 'create'])->name('customers.addresses.billing.create');
         Route::post('/{id}/billing-address', [BillingAddressController::class, 'store'])->name('customers.addresses.billing.store');
         Route::get('/{id}/shipping-address/create', [ShippingAddressController::class, 'create'])->name('customers.addresses.shipping.create');
