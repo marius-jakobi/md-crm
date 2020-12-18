@@ -13,7 +13,7 @@ class BillingAddress extends CustomerAddress
 
     protected $fillable = ['name', 'street', 'po_box', 'zip', 'city'];
 
-    public static function validationRules() {
+    public static function validationRules() : array {
         return [
             'name' => 'required|string|between:3,128',
             'street' => 'required_without:po_box',

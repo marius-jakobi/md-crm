@@ -17,6 +17,7 @@
                 <x-forms.text name="city" caption="Ort"></x-forms.text>
             </div>
         </div>
+        <a class="btn btn-secondary" href="{{ route('customer.show', ['id' => $id]) }}">Abbrechen</a>
         <x-forms.submit-button caption="Anlegen"></x-forms.submit-button>
     </x-forms.form>
 @endsection

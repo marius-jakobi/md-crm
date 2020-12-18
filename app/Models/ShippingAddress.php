@@ -12,4 +12,13 @@ class ShippingAddress extends CustomerAddress
     protected $table = 'shipping_addresses';
 
     protected $fillable = ['name', 'street', 'zip', 'city'];
+
+    public static function validationRules() : array {
+        return [
+            'name' => 'required|string|between:3,128',
+            'street' => 'required_without:po_box',
+            'zip' => 'required|regex:/[0-9]{5}/',
+            'city' => 'required|string|between:3,128',
+        ];
+    }
 }

@@ -23,7 +23,10 @@ class BillingAddressController extends Controller
         $validator = Validator::make($request->input(), BillingAddress::validationRules());
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()
+                ->route('customers.addresses.billing.create', ['id' => $id])
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $billingAddress = new BillingAddress($request->only(['name', 'street', 'po_box', 'zip', 'city']));
@@ -49,7 +52,8 @@ class BillingAddressController extends Controller
         $validator = Validator::make($input, BillingAddress::validationRules());
 
         if ($validator->fails()) {
-            return redirect()->back()
+            return redirect()
+                ->route('customers.addresses.billing.edit', ['id' => $id, 'address_id' => $address_id])
                 ->withErrors($validator);
         }
 
