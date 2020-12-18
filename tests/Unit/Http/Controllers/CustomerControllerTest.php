@@ -6,17 +6,16 @@ use App\Models\Customer;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Policies\CustomerPermission;
 use Illuminate\Database\Eloquent\Builder;
 use Tests\TestCase;
+use Tests\TestHelpers;
 
 class CustomerControllerTest extends TestCase
 {
     public function testIndex()
     {
-        $user = User::factory()->create();
-        $role = $this->getRoleWithPermission('index-customer');
-        $user->roles()->save($role);
-        $user->refresh();
+        $user = TestHelpers::createUserWithPermission(CustomerPermission::INDEX);
 
         $this->actingAs($user)
             ->get(route('customer.index'))
@@ -28,12 +27,8 @@ class CustomerControllerTest extends TestCase
 
     public function testShow()
     {
-        $user = User::factory()->create();
+        $user = TestHelpers::createUserWithPermission(CustomerPermission::VIEW);
         $customer = Customer::factory()->create();
-        $role = $this->getRoleWithPermission('view-customer');
-
-        $user->roles()->save($role);
-        $user->refresh();
 
         $this->actingAs($user)
             ->get(route('customer.show', ['id' => $customer->id]))
@@ -42,11 +37,5 @@ class CustomerControllerTest extends TestCase
 
         $user->delete();
         $customer->delete();
-    }
-
-    private function getRoleWithPermission(string $permission) {
-        return Role::whereHas('permissions', function(Builder $query) use($permission) {
-            $query->where('identifier', '=', $permission);
-        })->first();
     }
 }
