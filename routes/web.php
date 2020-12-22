@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillingAddressController;
+use App\Http\Controllers\CustomerContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
@@ -39,6 +40,8 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/{id}/shipping-address/{address_id}', [ShippingAddressController::class, 'update'])->name('customers.addresses.shipping.update');
         Route::get('/{id}/shipping-address/create', [ShippingAddressController::class, 'create'])->name('customers.addresses.shipping.create');
         Route::post('/{id}/shipping-address', [ShippingAddressController::class, 'store'])->name('customers.addresses.shipping.store');
+        Route::get('/{id}/contacts/create', [CustomerContactController::class, 'create'])->name('customers.contacts.create');
+        Route::post('/{id}/contacts', [CustomerContactController::class, 'store'])->name('customers.contacts.store');
         Route::get('/{id}', [CustomerController::class, 'show'])->name('customer.show');
         Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
     });

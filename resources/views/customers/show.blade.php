@@ -69,6 +69,9 @@
         </tbody>
     </table>
     <h3>Kontakte</h3>
+    @can('create', \App\Models\CustomerContact::class)
+        <a href="{{ route('customers.contacts.create', ['id' => $customer->id]) }}" class="btn btn-primary mb-3">Hinzufügen</a>
+    @endcan
     <table class="table">
         <thead>
         <tr>

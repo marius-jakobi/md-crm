@@ -179,9 +179,11 @@ return [
         'time'                  => 'Uhrzeit',
         'available'             => 'verfügbar',
         'size'                  => 'Größe',
-        'street'                 => 'Straße',
+        'street'                => 'Straße',
         'po_box'                => 'Postfach',
         'zip'                   => 'Postleitzahl',
+        'position'              => 'Position',
+        'division'              => 'Abteilung'
     ],
 
 ];
