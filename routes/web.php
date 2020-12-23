@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShippingAddressController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,5 +45,9 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/{id}/contacts', [CustomerContactController::class, 'store'])->name('customers.contacts.store');
         Route::get('/{id}', [CustomerController::class, 'show'])->name('customer.show');
         Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+    });
+
+    Route::prefix('tickets')->group(function() {
+        Route::get('/{id}', [TicketController::class, 'show'])->name('ticket.show');
     });
 });

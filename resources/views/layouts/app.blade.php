@@ -10,7 +10,7 @@
 </head>
 <body>
     @include('components.navbar')
-    <div class="container-fluid">
+    <div class="container-fluid mb-3">
         {{-- Session flash messages --}}
         @foreach(['error', 'warning', 'info', 'success'] as $type)
             @if(session($type))

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Ticket;
+use App\Models\TicketStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -20,6 +23,12 @@ class CustomerController extends Controller
 
         $this->authorize('view', $customer);
 
-        return view('customers.show', ['customer' => $customer]);
+        $tickets = DB::table('tickets')
+            ->where('tickets.customer_id', '=', $id)
+            ->where('tickets.status', '=', TicketStatus::OPEN)
+            ->leftJoin('shipping_addresses', 'shipping_addresses.id', '=', 'tickets.shipping_address_id')
+            ->get(['tickets.*', 'shipping_addresses.name as shipping_address_name']);
+
+        return view('customers.show', ['customer' => $customer, 'tickets' => $tickets]);
     }
 }

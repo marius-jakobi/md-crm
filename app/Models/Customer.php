@@ -22,6 +22,10 @@ class Customer extends Model
         return $this->hasMany(CustomerContact::class, 'customer_id', 'id');
     }
 
+    public function tickets() {
+        return $this->hasMany(Ticket::class, 'customer_id', 'id');
+    }
+
     /**
      * Alias for customer contacts
      */
