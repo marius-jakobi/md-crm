@@ -45,5 +45,4 @@
             </div>
         </div>
     </x-forms.form>
-    {{ $errors }}
 @endsection
