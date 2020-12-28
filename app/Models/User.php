@@ -49,7 +49,7 @@ class User extends Authenticatable
      * @return string
      */
     public function fullname() {
-        return $this->firstname . ' ' . $this->lastname;
+        return $this->lastname . ', ' . $this->firstname;
     }
 
     /**

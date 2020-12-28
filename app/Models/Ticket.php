@@ -10,11 +10,35 @@ class Ticket extends Model
 {
     use HasFactory, Uuids;
 
+    protected $fillable = [
+        'customer_id',
+        'shipping_address_id',
+        'creator_id',
+        'receiver_id',
+        'status',
+        'subject',
+        'contact_name',
+        'contact_phone',
+        'contact_mail',
+        'text',
+    ];
+
     private array $states = [
         TicketStatus::OPEN => 'offen',
         TicketStatus::IN_PROGRESS => 'in Bearbeitung',
         TicketStatus::DONE => 'erledigt'
     ];
+
+    public static function validationRules() : array
+    {
+        return [
+            'receiver_id' => 'required|exists:users,id',
+            'subject' => 'required|between:3,128',
+            'contact_name' => 'required|between: 3,128',
+            'contact_phone' => 'required|between: 3,128',
+            'text' => 'required|between: 3,1000',
+        ];
+    }
 
     public function customer()
     {

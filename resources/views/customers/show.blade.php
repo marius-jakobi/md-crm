@@ -3,9 +3,17 @@
 @section('title', $customer->name)
 
 @section('content')
-    <h1>{{ $customer->name }}</h1>
-    <p>erstellt: {{ $customer->created_at }}</p>
-    <p>zuletzt geändert: {{ $customer->updated_at }}</p>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h1>{{ $customer->name }}</h1>
+            <p>erstellt: {{ $customer->created_at }}</p>
+            <p>zuletzt geändert: {{ $customer->updated_at }}</p>
+        </div>
+        <div class="col-md-6 col-sm-12 pt-3 text-right">
+            <a class="btn btn-primary" href="{{ route('ticket.create', ['id' => $customer->id]) }}">Ticket erstellen</a>
+        </div>
+    </div>
+    <hr/>
     <div class="row">
         @can('viewAny', \App\Models\BillingAddress::class)
             <div class="col-lg-6 col-md-12">

@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/{id}/shipping-address', [ShippingAddressController::class, 'store'])->name('customers.addresses.shipping.store');
         Route::get('/{id}/contacts/create', [CustomerContactController::class, 'create'])->name('customers.contacts.create');
         Route::post('/{id}/contacts', [CustomerContactController::class, 'store'])->name('customers.contacts.store');
+        Route::get('/{id}/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
+        Route::post('/{id}/ticket', [TicketController::class, 'store'])->name('ticket.store');
         Route::get('/{id}', [CustomerController::class, 'show'])->name('customer.show');
         Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
     });

@@ -11,14 +11,16 @@
             <p>zuletzt geändert: {{ $ticket->updated_at }}</p>
         </div>
         <div class="col-sm-12 col-md-6">
+            <h2>Lieferadresse</h2>
             @if($ticket->shippingAddress)
-                <h2>Lieferadresse</h2>
                 <p>
                     {{ $ticket->shippingAddress->name }}<br/>
                     {{ $ticket->shippingAddress->street }}<br/>
                     {{ $ticket->shippingAddress->zip }}
                     {{ $ticket->shippingAddress->city }}
                 </p>
+            @else
+                <p>nicht angegeben</p>
             @endif
         </div>
     </div>

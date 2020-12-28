@@ -183,7 +183,12 @@ return [
         'po_box'                => 'Postfach',
         'zip'                   => 'Postleitzahl',
         'position'              => 'Position',
-        'division'              => 'Abteilung'
+        'division'              => 'Abteilung',
+        'subject'               => 'Betreff',
+        'contact_name'          => 'Ansprechpartner',
+        'contact_phone'         => 'Telefon',
+        'text'                  => 'Text',
+        'receiver_id'           => 'Empfänger'
     ],
 
 ];
