@@ -46,7 +46,7 @@ class TicketController extends Controller
         $ticket->creator_id = Auth::user()->id;
         $ticket->save();
 
-        return redirect(route('ticket.show', ['id' => $ticket->id]))
+        return redirect(route('customer.show', ['id' => $customer->id]))
             ->with('success', 'Das Ticket wurde erstellt.');
     }
 }
