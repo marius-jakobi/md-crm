@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShippingAddressController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,7 @@ Route::middleware(['auth'])->group(function() {
     });
 
     Route::prefix('tickets')->group(function() {
+        Route::post('/{id}/response', [TicketResponseController::class, 'create'])->name('ticket.response.create');
         Route::get('/{id}', [TicketController::class, 'show'])->name('ticket.show');
     });
 });

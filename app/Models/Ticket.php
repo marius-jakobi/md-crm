@@ -55,14 +55,18 @@ class Ticket extends Model
         return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 
-    public function creatorName()
-    {
-        return $this->creator->lastname . ', ' . $this->creator->firstname;
-    }
-
     public function receiver()
     {
         return $this->belongsTo(User::class, 'receiver_id', 'id');
+    }
+
+    public function responses() {
+        return $this->hasMany(TicketResponse::class, 'ticket_id', 'id');
+    }
+
+    public function creatorName()
+    {
+        return $this->creator->lastname . ', ' . $this->creator->firstname;
     }
 
     public function receiverName()

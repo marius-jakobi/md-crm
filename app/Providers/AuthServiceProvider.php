@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\ShippingAddress' => 'App\Policies\ShippingAddressPolicy',
         'App\Models\CustomerContact' => 'App\Policies\CustomerContactPolicy',
         'App\Models\Ticket' => 'App\Policies\TicketPolicy',
+        'App\Models\TicketResponse' => 'App\Policies\TicketResponsePolicy',
     ];
 
     /**

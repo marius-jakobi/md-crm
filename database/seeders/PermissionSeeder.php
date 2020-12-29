@@ -27,6 +27,8 @@ class PermissionSeeder extends Seeder
             ['identifier' => 'customer', 'description' => 'Kunde'],
             ['identifier' => 'billing-address', 'description' => 'Rechnungsadresse'],
             ['identifier' => 'shipping-address', 'description' => 'Lieferadresse'],
+            ['identifier' => 'ticket', 'description' => 'Ticket'],
+            ['identifier' => 'ticket-response', 'description' => 'Ticket-Antwort'],
         ];
 
         $adminRole = Role::where('identifier', '=', 'administrators')->first();
