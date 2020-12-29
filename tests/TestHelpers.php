@@ -16,6 +16,10 @@ abstract class TestHelpers
             $query->where('identifier', '=', $identifier);
         })->first();
 
+        if(!$role) {
+            throw new \Exception("No Role with Permission '$identifier' found");
+        }
+
         $user->roles()->save($role);
         $user->refresh();
 
