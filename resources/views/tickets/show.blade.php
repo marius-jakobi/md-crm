@@ -41,11 +41,11 @@
     <textarea class="form-control" rows="8" readonly>{{ $ticket->text }}</textarea>
     @can('viewAny', \App\Models\TicketResponse::class)
         <hr/>
-        <h2>Antworten ({{ $ticket->responses->count() }})</h2>
-        @if($ticket->responses->count() == 0)
+        <h2>Antworten ({{ $ticket->ticketResponses->count() }})</h2>
+        @if($ticket->ticketResponses->count() == 0)
             <div class="alert bg-info">Dieses Ticket enthält keine Antworten.</div>
         @else
-            @foreach($ticket->responses as $response)
+            @foreach($ticket->ticketResponses as $response)
                 <div class="card bg-light mb-3">
                     <div class="card-header">
                         {{ $response->creator->fullName() }} am {{ $response->created_at }}

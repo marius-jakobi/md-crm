@@ -60,7 +60,7 @@ class Ticket extends Model
         return $this->belongsTo(User::class, 'receiver_id', 'id');
     }
 
-    public function responses() {
+    public function ticketResponses() {
         return $this->hasMany(TicketResponse::class, 'ticket_id', 'id');
     }
 
