@@ -30,7 +30,7 @@ class TicketPolicy
      */
     public function view(User $user, Ticket $ticket)
     {
-        return $user->hasPermission(TicketPermission::VIEW);
+        return $user->hasPermission(TicketPermission::VIEW) && $user->id === $ticket->receiver_id;
     }
 
     /**
@@ -53,7 +53,7 @@ class TicketPolicy
      */
     public function update(User $user, Ticket $ticket)
     {
-        return $user->hasPermission(TicketPermission::UPDATE);
+        return $user->hasPermission(TicketPermission::UPDATE) && $user->id == $ticket->receiver_id;
     }
 
     /**
@@ -65,6 +65,6 @@ class TicketPolicy
      */
     public function delete(User $user, Ticket $ticket)
     {
-        return $user->hasPermission(TicketPermission::DELETE);
+        return false;
     }
 }
