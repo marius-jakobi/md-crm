@@ -23,7 +23,6 @@ class CustomerSeeder extends Seeder
             ->has(BillingAddress::factory()->count(1))
             ->has(ShippingAddress::factory()->count(3))
             ->has(CustomerContact::factory()->count(2))
-            ->has(Ticket::factory()->count(4))
             ->create();
     }
 }
