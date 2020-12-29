@@ -13,7 +13,11 @@ class TicketController extends Controller
 {
     public function show(string $id)
     {
-        return view('tickets.show', ['ticket' => Ticket::findOrFail($id)]);
+        $ticket = Ticket::findOrFail($id);
+
+        $this->authorize('view', $ticket);
+
+        return view('tickets.show', ['ticket' => $ticket]);
     }
 
     public function create(string $id)
