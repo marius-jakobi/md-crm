@@ -53,6 +53,7 @@
                     <div class="card-body">
                         <div class="card-text">
                             <span style="white-space: pre-line">{{ $response->text }}</span>
+                            <p class="text-right text-secondary mb-0">#{{ $response->id }}</p>
                         </div>
                     </div>
                 </div>
