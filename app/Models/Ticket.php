@@ -36,7 +36,7 @@ class Ticket extends Model
             'subject' => 'required|between:3,128',
             'contact_name' => 'required|between: 3,128',
             'contact_phone' => 'required|between: 3,128',
-            'text' => 'required|between: 3,1000',
+            'text' => 'required|between: 3,2000',
         ];
     }
 
